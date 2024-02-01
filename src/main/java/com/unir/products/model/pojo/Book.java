@@ -21,7 +21,7 @@ public class Book {
     private String author;
 
     @Column(name = "title")
-    private String country;
+    private String title;
 
     @Column(name = "isbn")
     private String isbn;
@@ -37,7 +37,7 @@ public class Book {
 
     public void update(BookDto bookDto) {
         this.author = bookDto.getAuthor();
-        this.country = bookDto.getCountry();
+        this.title = bookDto.getTitle();
         this.isbn = bookDto.getIsbn();
         this.age = bookDto.getAge();
         this.synapsis = bookDto.getSynapsis();
