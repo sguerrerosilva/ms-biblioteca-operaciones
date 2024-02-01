@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BookDto {
 
     private String author;
-    private String country;
+    private String title;
     private String isbn;
     private Short age;
     private String synapsis;
