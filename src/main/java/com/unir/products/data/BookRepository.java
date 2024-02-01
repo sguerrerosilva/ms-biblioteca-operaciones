@@ -19,6 +19,16 @@ public class BookRepository {
         return repository.findAll();
     }
 
+    public Book getBook(Long idBook){
+        return repository.findById(idBook).orElse(null);
+    }
+
+    public Book saveBook(Book book ){
+        return repository.save(book);
+    }
+
+    public void deleteBook(Long idBook){repository.deleteById(idBook);}
+
     public List<Book> search(String author, String title, String isbn, Short age, String synapsis, Short stock) {
         SearchCriteria<Book> spec = new SearchCriteria<>();
         if (StringUtils.isNotBlank(author)) {
