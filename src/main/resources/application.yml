@@ -1,6 +1,6 @@
 ## Configuracion de Instancia
 server:
-  port: 8088
+  port: 8082
   error:
     include-stacktrace: on_param
 
@@ -30,8 +30,8 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+
 ## Configuracion secundaria (custom)
 getBook:
   url: http://ms-library-inventory-books/products/%s
-
 
