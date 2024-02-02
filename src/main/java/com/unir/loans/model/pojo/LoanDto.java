@@ -13,7 +13,7 @@ import java.sql.Date;
 @ToString
 public class LoanDto {
 
-    private Integer idBook;
+    private Long idBook;
     private String idClient;
     private Date startDate;
     private Date dueDate;

@@ -20,7 +20,7 @@ public class Loan {
     private Long id;
 
     @Column(name = "id_book")
-    private Integer idBook;
+    private Long idBook;
 
     @Column(name = "id_client")
     private String idClient;

@@ -32,5 +32,10 @@ spring:
         web-allow-others: true
 
 ## Configuracion secundaria (custom)
+  MsLibrary:
+    url: http://ms-library
+    name: ms-library
 getBook:
-  url: http://ms-library-inventory-books/products/%s
+  url: http://ms-library/books/%s
+patchBook:
+  url: http://ms-library/books/%s
