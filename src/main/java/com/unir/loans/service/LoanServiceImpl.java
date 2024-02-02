@@ -2,7 +2,6 @@ package com.unir.loans.service;
 
 
 import com.google.gson.Gson;
-import com.unir.loans.clients.MsLibrary;
 import com.unir.loans.data.LoanRepository;
 import com.unir.loans.fecade.LoansFecade;
 import com.unir.loans.model.BookDto;
@@ -27,9 +26,6 @@ public class LoanServiceImpl {
     @Autowired
     private LoansFecade loansFecade;
 
-    @Autowired
-    private MsLibrary  msLibrary;
-
     public List<Loan> getLoans(Integer idBook, String idClient, String status){
 
         if( idBook != null || StringUtils.hasLength(idClient) ||  StringUtils.hasLength(status)){
@@ -39,23 +35,21 @@ public class LoanServiceImpl {
     }
 
     public Loan addLoan(CreateLoanRequest request){
-        BookDto book = new BookDto();
-        try{
+        // Se consulta el libro a realizar prestamo
+        BookDto book = loansFecade.getBook(request.getIdBook());
 
-            book = loansFecade.getBook(request.getIdBook());
-            //book = msLibrary.getBook(request.getIdBook());
-        }catch (Exception e){
-            log.info(e.getMessage());
-        }
-        if(book.getStock() > 0){
+        //Se validan sus existencias
+        if (book.getStock() > 0) {
             Loan loan = Loan.builder().idBook(request.getIdBook()).idClient(request.getIdClient()).
                     startDate(Date.valueOf(LocalDate.now())).dueDate(Date.valueOf(LocalDate.now().plusDays(5))).status("borrowed").build();
+
+            //Se guarda el registro del prestamos
             repository.save(loan);
-            book.setStock((short) (book.getStock()-1));
+            book.setStock((short) (book.getStock() - 1));
             String body = new Gson().toJson(book);
-            log.info(body);
+
+            //Se envia la peticion para actualizar el libro prestado en el inventario
             loansFecade.patchBook(request.getIdBook(), body);
-            BookDto patchBook = msLibrary.patchBook(request.getIdBook(), book);
             return loan;
         }
         return null;

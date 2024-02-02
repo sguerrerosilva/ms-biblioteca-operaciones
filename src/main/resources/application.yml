@@ -1,6 +1,6 @@
 ## Configuracion de Instancia
 server:
-  port: 8082
+  port: 8089
   error:
     include-stacktrace: on_param
 
@@ -32,9 +32,6 @@ spring:
         web-allow-others: true
 
 ## Configuracion secundaria (custom)
-  MsLibrary:
-    url: http://ms-library
-    name: ms-library
 getBook:
   url: http://ms-library/books/%s
 patchBook:
