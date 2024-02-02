@@ -1,7 +1,22 @@
+## Configuracion de Instancia
+server:
+  port: 8088
+  error:
+    include-stacktrace: on_param
+
+## Configuracion del cliente de Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+    hostname: ms-library
+
 ## Configuracion de Spring
 spring:
   application:
-    name: ms-library-inventory-books
+    name: ms-library
   datasource:
     url: jdbc:h2:mem:testdb;Mode=MySQL
   jpa:
@@ -15,16 +30,8 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+## Configuracion secundaria (custom)
+getBook:
+  url: http://ms-library-inventory-books/products/%s
 
-## Configuracion de Instancia
-server:
-  port: 8088
 
-## Configuracion del cliente de Eureka
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: false
-    hostname: ms-library-inventory-books

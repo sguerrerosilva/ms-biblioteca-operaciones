@@ -22,8 +22,8 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Products Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre productos alojados en la base de datos en memoria de la biblioteca.")
-public class ProductsController {
+@Tag(name = "Books Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre productos alojados en la base de datos en memoria de la biblioteca.")
+public class BooksController {
 
 
     private final BooksServiceImpl service;
